@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Victor Hugo Suezawa Capelão">
+        
+
+        <link rel="icon" href="./assets/blackpoo.ico">
+        <title>iAtazanador - Cadastros</title>
+
+        <!-- bootstrap css cdn -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- font awesome cdn -->
+        <script src="https://kit.fontawesome.com/2b62139daa.js" crossorigin="anonymous"></script>
+
+        <!-- jquery cdn -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <style>
+
+            .form-control::placeholder { 
+                color: white;
+                opacity: 1;
+            }    
+
+        </style>
+
+    </head>
+
+    <body>
+    
+        <header>
+            <nav class="navbar navbar-dark bg-dark" style="height: 100px">
+
+                <div class="container">
+
+                    <a style="margin-left: 2%" class="navbar-brand" href="#">
+                        <i class="fas fa-poo"></i>
+                        iAtazanador
+                    </a>
+
+                    <ul class="nav">
+
+                </div>
+            </nav>
+        </header>
+        
+        <main>
+
+            <!-- Cadastro de clientes -->
+            <section class="py-5 container">
+
+                <div class="row py-lg-5">
+
+                    <div class="col-lg-6 col-md-8 mx-auto">
+
+                        <form>
+                            
+                            <div class="mb-3">
+
+                                <h1>Cadastro de Clientes</h1><br>
+                                <label class="form-label">Nome</label>
+                                <input style="background-color:#292b2c ; color:white" type="text" class="form-control" id="inputClienteNome" placeholder="Insira seu nome">
+
+                                <br>
+
+                                <label class="form-label">E-mail</label>
+                                <input style="background-color:#292b2c ; color:white" type="email" class="form-control" id="inputClienteEmail" placeholder="Insira seu e-mail">
+
+                                <br>
+
+                                <label class="form-label">Endereço</label>
+                                <input style="background-color:#292b2c ; color:white" type="text" class="form-control" id="inputClienteEndereco" placeholder="Insira seu endereço">
+
+                                <br>
+
+                                <label class="form-label">Telefone</label>
+                                <input style="background-color:#292b2c ; color:white" type="text" class="form-control" id="inputClienteTelefone" placeholder="Insira seu telefone">
+
+                                <br>
+                            
+                            </div>
+
+                            <button type="button" class="btn btn-dark" onclick="clienteCadAtualizar();">Cadastrar</button>
+
+                        </form>
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-8 mx-auto">
+
+                        <h1>Clientes</h1><br>
+                        <hr>
+                        <table id="clientes" class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Nome</td>
+                                    <td>E-mail</td>
+                                    <td>Endereço</td>
+                                    <td>Telefone</td>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                        <script>
+                            function clienteCadAtualizar() {
+
+                                var clienteNome = document.getElementById('inputClienteNome');
+                                var clienteEmail = document.getElementById('inputClienteEmail');
+                                var clienteEndereco = document.getElementById('inputClienteEndereco');
+                                var clienteTelefone = document.getElementById('inputClienteTelefone');
+                        
+                                localStorage.clienteNome = clienteNome.value;
+                                localStorage.clienteEmail = clienteEmail.value;
+                                localStorage.clienteEndereco = clienteEndereco.value;
+                                localStorage.clienteTelefone = clienteTelefone.value;
+                                
+                                if ($("#inputClienteNome").val() != null &&
+                                    $("#inputClienteNome").val() != '') {
+
+                                    clienteCadAdicionarTabela();
+
+                                    clienteFormClear();
+
+                                    $("#inputClienteNome").focus();
+                                }
+                            }
+
+                            function clienteCadAdicionarTabela() {
+                                if ($("#clientes tbody").length == 0) {
+                                    $("#clientes").append("<tbody></tbody>");
+                                }
+
+                                $("#clientes tbody").append(
+                                    "<tr>" +
+                                        "<td>" + localStorage.clienteNome + "</td>" +
+                                        "<td>" + localStorage.clienteEmail + "</td>" +
+                                        "<td>" + localStorage.clienteEndereco + "</td>" +
+                                        "<td>" + localStorage.clienteTelefone + "</td>" +
+                                    "</tr>"
+                                    );
+                            }
+
+                            function clienteFormClear() {
+                                $("#inputClienteNome").val("");
+                                $("#inputClienteEmail").val("");
+                                $("#inputClienteEndereco").val("");
+                                $("#inputClienteTelefone").val("");
+                            }
+                        
+                        </script>
+
+                    </div>
+
+                </div>
+
+            </section>
+        
+            <!-- Cadastro de produtos -->
+            <section class="py-5 container">
+
+                <div class="row py-lg-5">
+
+                    <div class="col-lg-6 col-md-8 mx-auto">
+
+                        <form>
+                            
+                            <div class="mb-3">
+
+                                <h1>Cadastro de Produtos</h1><br>
+                                <label class="form-label">Nome</label>
+                                <input style="background-color:#292b2c ; color:white" type="text" class="form-control" id="inputProdutoNome" placeholder="Insira o nome do produto">
+
+                                <br>
+
+                                <label class="form-label">Descrição</label>
+                                <input style="background-color:#292b2c ; color:white" type="text" class="form-control" id="inputProdutoDescricao" placeholder="Insira a descrição do produto">
+
+                                <br>
+
+                                <label class="form-label">Quantidade</label>
+                                <input style="background-color:#292b2c ; color:white" type="number" class="form-control" id="inputProdutoQuantidade" placeholder="Insira a quantidade do produto">
+
+                                <br>
+
+                            </div>
+                            <button type="button" class="btn btn-dark" id="" onclick="produtoCadAtualizar();">Cadastrar</button>
+
+                        </form>
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-8 mx-auto">
+
+                        <h1>Produtos</h1><br>
+                        <hr>
+                        <table id="produtos" class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Nome</td>
+                                    <td>Descrição</td>
+                                    <td>Quantidade</td>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                        <script>
+                            function produtoCadAtualizar() {
+
+                                var produtoNome = document.getElementById('inputProdutoNome');
+                                var produtoDescricao = document.getElementById('inputProdutoDescricao');
+                                var produtoQuantidade = document.getElementById('inputProdutoQuantidade');
+
+                                localStorage.produtoNome = produtoNome.value;
+                                localStorage.produtoDescricao = produtoDescricao.value;
+                                localStorage.produtoQuantidade = produtoQuantidade.value;
+
+                                if ($("#inputProdutoNome").val() != null &&
+                                    $("#inputProdutoNome").val() != '') {
+
+                                    produtoCadAdicionarTabela();
+
+                                    produtoFormClear();
+
+                                    $("#inputProdutoNome").focus();
+                                }
+                            }
+
+                            function produtoCadAdicionarTabela() {
+                                if ($("#produtos tbody").length == 0) {
+                                    $("#produtos").append("<tbody></tbody>");
+                                }
+
+                                $("#produtos tbody").append(
+                                    "<tr>" +
+                                        "<td>" + localStorage.produtoNome + "</td>" +
+                                        "<td>" + localStorage.produtoDescricao + "</td>" +
+                                        "<td>" + localStorage.produtoQuantidade + "</td>" +
+                                    "</tr>"
+                                );
+                            }
+
+                            function produtoFormClear() {
+                                $("#inputProdutoNome").val("");
+                                $("#inputProdutoDescricao").val("");
+                                $("#inputProdutoQuantidade").val("");
+                            }
+
+                        </script>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+        
+        <footer class="text-muted py-5 bg-dark">
+            <div class="container">
+                <div  style="margin-bottom: 40px">
+                    <i class="fas fa-map-marker-alt"></i><a style="color:white"> Rua dos bobos, nº 0 </a><br><br>
+                    <i class="fas fa-phone-alt"></i><a style="color:white"> +55 (00) 90000-0000 </a><br><br>
+                    <i class="fas fa-at"></i><a style="color:white"> contato@iatazanador.com.br </a>
+                </div>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>
+        
